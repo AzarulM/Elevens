@@ -55,7 +55,33 @@ public class ElevensBoard extends Board {
      */
     @Override
     public boolean isLegal(List<Integer> selectedCards) {
-		/* *** TO BE IMPLEMENTED IN ACTIVITY 9 *** */
+        if(selectedCards.size() == 2)
+        {
+
+            if(cardAt(selectedCards.get(0)).pointValue() == 0 || cardAt(selectedCards.get(1)).pointValue() == 0)
+            {
+                return false;
+            }
+            else
+            {
+                return cardAt(selectedCards.get(0)).pointValue() + cardAt(selectedCards.get(1)).pointValue() == 11;
+            }
+        }
+        // your stupid test
+        //System.out.println(selectedCards);
+        //            System.out.println(selectedCards.get(0) + selectedCards.get(1) + selectedCards.get(2));
+        else if (selectedCards.size() == 3)
+        {
+            // initializes a list of ranks
+            List<String> ranks = new ArrayList<>();
+            for(int i = 0 ; i < selectedCards.size();i++){
+                ranks.add(cardAt(selectedCards.get(i)).rank());
+            }
+            if(ranks.contains("jack") && ranks.contains("queen") && ranks.contains("king")){
+                return true;
+            }
+        }
+        return false;
     }
 
     /**
@@ -68,7 +94,7 @@ public class ElevensBoard extends Board {
      */
     @Override
     public boolean anotherPlayIsPossible() {
-		/* *** TO BE IMPLEMENTED IN ACTIVITY 9 *** */
+        return true;
     }
 
     /**
@@ -80,7 +106,11 @@ public class ElevensBoard extends Board {
      *              contain an 11-pair; false otherwise.
      */
     private boolean containsPairSum11(List<Integer> selectedCards) {
-		/* *** TO BE IMPLEMENTED IN ACTIVITY 9 *** */
+        if(selectedCards.size() == 2) {
+            return selectedCards.get(0) + selectedCards.get(1) == 11;
+        }
+        else
+            return false;
     }
 
     /**
@@ -92,6 +122,11 @@ public class ElevensBoard extends Board {
      *              include a jack, a queen, and a king; false otherwise.
      */
     private boolean containsJQK(List<Integer> selectedCards) {
-		/* *** TO BE IMPLEMENTED IN ACTIVITY 9 *** */
+        if(selectedCards.size() == 3) {
+            if (selectedCards.get(0) == 0 || selectedCards.get(1) == 0 || selectedCards.get(2) == 0) {
+                return true;
+            }
+        }
+        return false;
     }
 }
