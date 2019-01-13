@@ -65,6 +65,8 @@ public class Deck {
      */
     public void shuffle() {
 		/* *** TO BE IMPLEMENTED IN ACTIVITY 4 *** */
+	     new Activity3.Shuffler();
+        size = 0;
     }
 
     /**
