@@ -56,6 +56,14 @@ public class ElevensBoard extends Board {
     @Override
     public boolean isLegal(List<Integer> selectedCards) {
 		/* *** TO BE IMPLEMENTED IN ACTIVITY 9 *** */
+	    
+	     int total = 0;
+        if (selectedCards.size() == 2) {
+            return cards[selectedCards.get(0)].pointValue() + cards[selectedCards.get(1)].pointValue() == 11;
+        }
+        for (int i : selectedCards)
+            total += cards[i].pointValue();
+        return total == 11 || total == 0;
     }
 
     /**
@@ -69,6 +77,26 @@ public class ElevensBoard extends Board {
     @Override
     public boolean anotherPlayIsPossible() {
 		/* *** TO BE IMPLEMENTED IN ACTIVITY 9 *** */
+	    
+        boolean j = false;
+        boolean q = false;
+        boolean k = false;
+        boolean total = false;
+        for (int i = 0; i < cards.length; i++) {
+            if (cards[i].rank().equals("jack"))
+                j = true;
+            if (cards[i].rank().equals("queen"))
+                q = true;
+            if (cards[i].rank().equals("king"))
+                k = true;
+            for (int j = 0; j < cards.length; j++) {
+                if (cards[i].pointValue() + cards[j].pointValue() == 11)
+                    return true;
+            }
+        }
+        if (j && q && k)
+            return true;
+        return false;
     }
 
     /**
@@ -81,6 +109,12 @@ public class ElevensBoard extends Board {
      */
     private boolean containsPairSum11(List<Integer> selectedCards) {
 		/* *** TO BE IMPLEMENTED IN ACTIVITY 9 *** */
+	    
+	    for (int i = 0; i < selectedCards.size(); i++) {
+            if (cardAt(selectedCards.get(i)).pointValue() + cardAt(selectedCards.get(i + 1)).pointValue() == 11)
+                return true;
+        }
+        return false;
     }
 
     /**
@@ -93,6 +127,19 @@ public class ElevensBoard extends Board {
      */
     private boolean containsJQK(List<Integer> selectedCards) {
 		/* *** TO BE IMPLEMENTED IN ACTIVITY 9 *** */
+	    
+	boolean j = false;
+        boolean q = false;
+        boolean k = false;
+        for (Integer i : selectedCards) {
+            if (cardAt(selectedCards.get(i)).suit() == "jack")
+                j = true;
+            else if (cardAt(selectedCards.get(i)).suit() == "queen")
+                q = true;
+            else if (cardAt(selectedCards.get(i)).suit() == "king")
+                k = true;
+        }
+        return j && q && k;
     }
 }
 
