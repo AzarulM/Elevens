@@ -233,5 +233,18 @@ public class ElevensBoard {
      */
     private boolean containsJQK(List<Integer> selectedCards) {
 		/* *** TO BE IMPLEMENTED IN ACTIVITY 9 *** */
+	    
+	boolean j = false;
+        boolean q = false;
+        boolean k = false;
+        for (Integer i : selectedCards) {
+            if(cardAt(selectedCards.get(i)).suit()=="jack")
+                j = true;
+            else if (cardAt(selectedCards.get(i)).suit()=="queen")
+                q = true;
+            else if (cardAt(selectedCards.get(i)).suit()=="king")
+                k = true;
+        }
+        return j && q && k;
     }
 }
